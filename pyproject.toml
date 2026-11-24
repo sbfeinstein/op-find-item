@@ -24,7 +24,7 @@ dependencies = [
   "onepassword-sdk>=0.4.0",
   "onepassword>=0.4.1",
 ]
-requires-python = ">= 3.12"
+requires-python = ">=3.11"
 
 [dependency-groups]
 dev = [

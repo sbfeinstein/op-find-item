@@ -32,6 +32,7 @@ qa:
 
 # Run all the tests for all the supported Python versions
 testall:
+    uv run --python=3.11 pytest
     uv run --python=3.12 pytest
     uv run --python=3.13 pytest
     uv run --python=3.14 pytest
@@ -48,6 +49,8 @@ pdb *ARGS:
 
 # Run tests with coverage across all supported Python versions
 coverage:
+    uv run --python=3.13 coverage erase
+    uv run --python=3.11 coverage run -m pytest
     uv run --python=3.12 coverage run -m pytest
     uv run --python=3.13 coverage run -m pytest
     uv run --python=3.14 coverage run -m pytest

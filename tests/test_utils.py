@@ -1,6 +1,6 @@
 """tests for `op_find_item/utils.py`"""
 
-from unittest.mock import patch, AsyncMock, MagicMock
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
@@ -15,25 +15,25 @@ class MockOutputConfig:
         self.calls = []
 
     def on_start(self):
-        self.calls.append(('on_start',))
+        self.calls.append(("on_start",))
 
     def get_context_manager(self):
         return self
 
     def on_vault_start(self, vault, overviews):
-        self.calls.append(('on_vault_start', vault.title, len(overviews)))
+        self.calls.append(("on_vault_start", vault.title, len(overviews)))
 
     async def on_match(self, vault, item, field, num):
         link = None
         if self.include_link:
             link = await utils.get_link(self.client, item)
-        self.calls.append(('on_match', vault.title, item.title, field.title, num, link))
+        self.calls.append(("on_match", vault.title, item.title, field.title, num, link))
 
     def on_item_processed(self, vault, item):
-        self.calls.append(('on_item_processed', vault.title, item.title))
+        self.calls.append(("on_item_processed", vault.title, item.title))
 
     def on_end(self):
-        self.calls.append(('on_end',))
+        self.calls.append(("on_end",))
 
     def __enter__(self):
         pass
@@ -94,45 +94,45 @@ class TestFind:
         client.vaults.list = AsyncMock(return_value=[])
         output_config = MockOutputConfig(client=client)
         search_filter = SearchFilter(ignore_case=True, fields=frozenset(), vaults=frozenset())
-        await utils.find(client, 'term', search_filter, output_config)
-        assert output_config.calls == [('on_start',), ('on_end',)]
+        await utils.find(client, "term", search_filter, output_config)
+        assert output_config.calls == [("on_start",), ("on_end",)]
 
     @pytest.mark.asyncio
     async def test_vault_filtered_out(self):
         vault = MagicMock()
-        vault.title = 'vault1'
+        vault.title = "vault1"
         client = MagicMock()
         client.vaults.list = AsyncMock(return_value=[vault])
         output_config = MockOutputConfig(client=client)
-        search_filter = SearchFilter(ignore_case=True, fields=frozenset(), vaults=frozenset(['other']))
-        await utils.find(client, 'term', search_filter, output_config)
-        assert output_config.calls == [('on_start',), ('on_end',)]
+        search_filter = SearchFilter(ignore_case=True, fields=frozenset(), vaults=frozenset(["other"]))
+        await utils.find(client, "term", search_filter, output_config)
+        assert output_config.calls == [("on_start",), ("on_end",)]
 
     @pytest.mark.asyncio
     async def test_vault_matching_no_items(self):
         vault = MagicMock()
-        vault.title = 'vault1'
-        vault.id = 'id1'
+        vault.title = "vault1"
+        vault.id = "id1"
         client = MagicMock()
         client.vaults.list = AsyncMock(return_value=[vault])
         client.items.list = AsyncMock(return_value=[])
         output_config = MockOutputConfig(client=client)
         search_filter = SearchFilter(ignore_case=True, fields=frozenset(), vaults=frozenset())
-        await utils.find(client, 'term', search_filter, output_config)
-        assert output_config.calls == [('on_start',), ('on_vault_start', 'vault1', 0), ('on_end',)]
+        await utils.find(client, "term", search_filter, output_config)
+        assert output_config.calls == [("on_start",), ("on_vault_start", "vault1", 0), ("on_end",)]
 
     @pytest.mark.asyncio
     async def test_no_matching_fields(self):
         vault = MagicMock()
-        vault.title = 'vault1'
-        vault.id = 'id1'
+        vault.title = "vault1"
+        vault.id = "id1"
         overview = MagicMock()
-        overview.id = 'item1'
+        overview.id = "item1"
         item = MagicMock()
-        item.title = 'item1'
+        item.title = "item1"
         field = MagicMock()
-        field.title = 'field1'
-        field.value = 'no match here'
+        field.title = "field1"
+        field.value = "no match here"
         item.fields = [field]
         client = MagicMock()
         client.vaults.list = AsyncMock(return_value=[vault])
@@ -140,26 +140,26 @@ class TestFind:
         client.items.get = AsyncMock(return_value=item)
         output_config = MockOutputConfig(client=client)
         search_filter = SearchFilter(ignore_case=True, fields=frozenset(), vaults=frozenset())
-        await utils.find(client, 'term', search_filter, output_config)
+        await utils.find(client, "term", search_filter, output_config)
         assert output_config.calls == [
-            ('on_start',),
-            ('on_vault_start', 'vault1', 1),
-            ('on_item_processed', 'vault1', 'item1'),
-            ('on_end',)
+            ("on_start",),
+            ("on_vault_start", "vault1", 1),
+            ("on_item_processed", "vault1", "item1"),
+            ("on_end",),
         ]
 
     @pytest.mark.asyncio
     async def test_with_match(self):
         vault = MagicMock()
-        vault.title = 'vault1'
-        vault.id = 'id1'
+        vault.title = "vault1"
+        vault.id = "id1"
         overview = MagicMock()
-        overview.id = 'item1'
+        overview.id = "item1"
         item = MagicMock()
-        item.title = 'item1'
+        item.title = "item1"
         field = MagicMock()
-        field.title = 'field1'
-        field.value = 'has term here'
+        field.title = "field1"
+        field.value = "has term here"
         item.fields = [field]
         client = MagicMock()
         client.vaults.list = AsyncMock(return_value=[vault])
@@ -167,30 +167,30 @@ class TestFind:
         client.items.get = AsyncMock(return_value=item)
         output_config = MockOutputConfig(client=client)
         search_filter = SearchFilter(ignore_case=True, fields=frozenset(), vaults=frozenset())
-        await utils.find(client, 'term', search_filter, output_config)
+        await utils.find(client, "term", search_filter, output_config)
         assert output_config.calls == [
-            ('on_start',),
-            ('on_vault_start', 'vault1', 1),
-            ('on_match', 'vault1', 'item1', 'field1', 1, None),
-            ('on_item_processed', 'vault1', 'item1'),
-            ('on_end',)
+            ("on_start",),
+            ("on_vault_start", "vault1", 1),
+            ("on_match", "vault1", "item1", "field1", 1, None),
+            ("on_item_processed", "vault1", "item1"),
+            ("on_end",),
         ]
 
     @pytest.mark.asyncio
     async def test_multiple_matches(self):
         vault = MagicMock()
-        vault.title = 'vault1'
-        vault.id = 'id1'
+        vault.title = "vault1"
+        vault.id = "id1"
         overview = MagicMock()
-        overview.id = 'item1'
+        overview.id = "item1"
         item = MagicMock()
-        item.title = 'item1'
+        item.title = "item1"
         field1 = MagicMock()
-        field1.title = 'field1'
-        field1.value = 'has term1'
+        field1.title = "field1"
+        field1.value = "has term1"
         field2 = MagicMock()
-        field2.title = 'field2'
-        field2.value = 'has term2'
+        field2.title = "field2"
+        field2.value = "has term2"
         item.fields = [field1, field2]
         client = MagicMock()
         client.vaults.list = AsyncMock(return_value=[vault])
@@ -198,55 +198,55 @@ class TestFind:
         client.items.get = AsyncMock(return_value=item)
         output_config = MockOutputConfig(client=client)
         search_filter = SearchFilter(ignore_case=True, fields=frozenset(), vaults=frozenset())
-        await utils.find(client, 'term', search_filter, output_config)
+        await utils.find(client, "term", search_filter, output_config)
         assert output_config.calls == [
-            ('on_start',),
-            ('on_vault_start', 'vault1', 1),
-            ('on_match', 'vault1', 'item1', 'field1', 1, None),
-            ('on_match', 'vault1', 'item1', 'field2', 2, None),
-            ('on_item_processed', 'vault1', 'item1'),
-            ('on_end',)
+            ("on_start",),
+            ("on_vault_start", "vault1", 1),
+            ("on_match", "vault1", "item1", "field1", 1, None),
+            ("on_match", "vault1", "item1", "field2", 2, None),
+            ("on_item_processed", "vault1", "item1"),
+            ("on_end",),
         ]
 
     @pytest.mark.asyncio
     async def test_field_filtered_out(self):
         vault = MagicMock()
-        vault.title = 'vault1'
-        vault.id = 'id1'
+        vault.title = "vault1"
+        vault.id = "id1"
         overview = MagicMock()
-        overview.id = 'item1'
+        overview.id = "item1"
         item = MagicMock()
-        item.title = 'item1'
+        item.title = "item1"
         field = MagicMock()
-        field.title = 'field1'
-        field.value = 'has term'
+        field.title = "field1"
+        field.value = "has term"
         item.fields = [field]
         client = MagicMock()
         client.vaults.list = AsyncMock(return_value=[vault])
         client.items.list = AsyncMock(return_value=[overview])
         client.items.get = AsyncMock(return_value=item)
         output_config = MockOutputConfig(client=client)
-        search_filter = SearchFilter(ignore_case=True, fields=frozenset(['other']), vaults=frozenset())
-        await utils.find(client, 'term', search_filter, output_config)
+        search_filter = SearchFilter(ignore_case=True, fields=frozenset(["other"]), vaults=frozenset())
+        await utils.find(client, "term", search_filter, output_config)
         assert output_config.calls == [
-            ('on_start',),
-            ('on_vault_start', 'vault1', 1),
-            ('on_item_processed', 'vault1', 'item1'),
-            ('on_end',)
+            ("on_start",),
+            ("on_vault_start", "vault1", 1),
+            ("on_item_processed", "vault1", "item1"),
+            ("on_end",),
         ]
 
     @pytest.mark.asyncio
     async def test_case_sensitive_no_match(self):
         vault = MagicMock()
-        vault.title = 'vault1'
-        vault.id = 'id1'
+        vault.title = "vault1"
+        vault.id = "id1"
         overview = MagicMock()
-        overview.id = 'item1'
+        overview.id = "item1"
         item = MagicMock()
-        item.title = 'item1'
+        item.title = "item1"
         field = MagicMock()
-        field.title = 'field1'
-        field.value = 'has TERM'
+        field.title = "field1"
+        field.value = "has TERM"
         item.fields = [field]
         client = MagicMock()
         client.vaults.list = AsyncMock(return_value=[vault])
@@ -254,26 +254,26 @@ class TestFind:
         client.items.get = AsyncMock(return_value=item)
         output_config = MockOutputConfig(client=client)
         search_filter = SearchFilter(ignore_case=False, fields=frozenset(), vaults=frozenset())
-        await utils.find(client, 'term', search_filter, output_config)
+        await utils.find(client, "term", search_filter, output_config)
         assert output_config.calls == [
-            ('on_start',),
-            ('on_vault_start', 'vault1', 1),
-            ('on_item_processed', 'vault1', 'item1'),
-            ('on_end',)
+            ("on_start",),
+            ("on_vault_start", "vault1", 1),
+            ("on_item_processed", "vault1", "item1"),
+            ("on_end",),
         ]
 
     @pytest.mark.asyncio
     async def test_case_sensitive_match(self):
         vault = MagicMock()
-        vault.title = 'vault1'
-        vault.id = 'id1'
+        vault.title = "vault1"
+        vault.id = "id1"
         overview = MagicMock()
-        overview.id = 'item1'
+        overview.id = "item1"
         item = MagicMock()
-        item.title = 'item1'
+        item.title = "item1"
         field = MagicMock()
-        field.title = 'field1'
-        field.value = 'has term'
+        field.title = "field1"
+        field.value = "has term"
         item.fields = [field]
         client = MagicMock()
         client.vaults.list = AsyncMock(return_value=[vault])
@@ -281,29 +281,29 @@ class TestFind:
         client.items.get = AsyncMock(return_value=item)
         output_config = MockOutputConfig(client=client)
         search_filter = SearchFilter(ignore_case=False, fields=frozenset(), vaults=frozenset())
-        await utils.find(client, 'term', search_filter, output_config)
+        await utils.find(client, "term", search_filter, output_config)
         assert output_config.calls == [
-            ('on_start',),
-            ('on_vault_start', 'vault1', 1),
-            ('on_match', 'vault1', 'item1', 'field1', 1, None),
-            ('on_item_processed', 'vault1', 'item1'),
-            ('on_end',)
+            ("on_start",),
+            ("on_vault_start", "vault1", 1),
+            ("on_match", "vault1", "item1", "field1", 1, None),
+            ("on_item_processed", "vault1", "item1"),
+            ("on_end",),
         ]
 
     @pytest.mark.asyncio
-    @patch('op_find_item.utils.get_link')
+    @patch("op_find_item.utils.get_link")
     async def test_with_link(self, mock_get_link):
-        mock_get_link.return_value = 'link1'
+        mock_get_link.return_value = "link1"
         vault = MagicMock()
-        vault.title = 'vault1'
-        vault.id = 'id1'
+        vault.title = "vault1"
+        vault.id = "id1"
         overview = MagicMock()
-        overview.id = 'item1'
+        overview.id = "item1"
         item = MagicMock()
-        item.title = 'item1'
+        item.title = "item1"
         field = MagicMock()
-        field.title = 'field1'
-        field.value = 'has term'
+        field.title = "field1"
+        field.value = "has term"
         item.fields = [field]
         client = MagicMock()
         client.vaults.list = AsyncMock(return_value=[vault])
@@ -311,12 +311,12 @@ class TestFind:
         client.items.get = AsyncMock(return_value=item)
         output_config = MockOutputConfig(client=client, include_link=True)
         search_filter = SearchFilter(ignore_case=True, fields=frozenset(), vaults=frozenset())
-        await utils.find(client, 'term', search_filter, output_config)
+        await utils.find(client, "term", search_filter, output_config)
         assert output_config.calls == [
-            ('on_start',),
-            ('on_vault_start', 'vault1', 1),
-            ('on_match', 'vault1', 'item1', 'field1', 1, 'link1'),
-            ('on_item_processed', 'vault1', 'item1'),
-            ('on_end',)
+            ("on_start",),
+            ("on_vault_start", "vault1", 1),
+            ("on_match", "vault1", "item1", "field1", 1, "link1"),
+            ("on_item_processed", "vault1", "item1"),
+            ("on_end",),
         ]
         mock_get_link.assert_awaited_once_with(client, item)

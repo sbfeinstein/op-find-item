@@ -1,17 +1,18 @@
 """tests for `op_find_item/utils.py`"""
 
+from types import TracebackType
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
+from onepassword import Item, ItemField, ItemOverview, VaultOverview
 
 from op_find_item import utils
-from op_find_item.models import SearchFilter
+from op_find_item.models import OutputConfiguration, SearchFilter
 
 
-class MockOutputConfig:
+class MockOutputConfig(OutputConfiguration):
     def __init__(self, client=None, include_link=False):
-        self.client = client or MagicMock()
-        self.include_link = include_link
+        super().__init__(client or MagicMock(), include_link)
         self.calls = []
 
     def on_start(self):
@@ -20,17 +21,23 @@ class MockOutputConfig:
     def get_context_manager(self):
         return self
 
-    def on_vault_start(self, vault, overviews):
-        self.calls.append(("on_vault_start", vault.title, len(overviews)))
+    def on_vault_start(self, vault_overview: VaultOverview, item_overviews: list[ItemOverview]) -> None:
+        self.calls.append(("on_vault_start", vault_overview.title, len(item_overviews)))
 
-    async def on_match(self, vault, item, field, num):
+    async def on_match(
+        self,
+        vault_overview: VaultOverview,
+        item: Item,
+        field: ItemField,
+        match_number: int,
+    ) -> None:
         link = None
         if self.include_link:
             link = await utils.get_link(self.client, item)
-        self.calls.append(("on_match", vault.title, item.title, field.title, num, link))
+        self.calls.append(("on_match", vault_overview.title, item.title, field.title, match_number, link))
 
-    def on_item_processed(self, vault, item):
-        self.calls.append(("on_item_processed", vault.title, item.title))
+    def on_item_processed(self, vault_overview: VaultOverview, item: Item) -> None:
+        self.calls.append(("on_item_processed", vault_overview.title, item.title))
 
     def on_end(self):
         self.calls.append(("on_end",))
@@ -38,7 +45,12 @@ class MockOutputConfig:
     def __enter__(self):
         pass
 
-    def __exit__(self, *args):
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: TracebackType | None,
+    ) -> None:
         pass
 
 
@@ -320,3 +332,39 @@ class TestFind:
             ("on_end",),
         ]
         mock_get_link.assert_awaited_once_with(client, item)
+
+
+class TestGetLink:
+    """Tests for op_find_item.utils.get_link"""
+
+    @pytest.mark.asyncio
+    async def test_get_link_uses_one_time_one_hour_policy(self):
+        client = MagicMock()
+        item = MagicMock()
+        item.vault_id = "vault-id"
+        item.id = "item-id"
+        policy = object()
+        client.items.shares.get_account_policy = AsyncMock(return_value=policy)
+        client.items.shares.create = AsyncMock(return_value="https://example.test/share")
+
+        actual = await utils.get_link(client, item)
+
+        assert actual == "https://example.test/share"
+        client.items.shares.get_account_policy.assert_awaited_once_with("vault-id", "item-id")
+        params = client.items.shares.create.call_args.args[2]
+        assert params.expire_after is utils.ItemShareDuration.ONEHOUR
+        client.items.shares.create.assert_awaited_once_with(item, policy, params)
+
+
+class TestFindErrors:
+    """Tests that failures from the SDK are propagated to the caller."""
+
+    @pytest.mark.asyncio
+    async def test_vault_list_failure_is_not_suppressed(self):
+        client = MagicMock()
+        client.vaults.list = AsyncMock(side_effect=RuntimeError("vault access failed"))
+        output_config = MockOutputConfig(client=client)
+        search_filter = SearchFilter(ignore_case=True, fields=frozenset(), vaults=frozenset())
+
+        with pytest.raises(RuntimeError, match="vault access failed"):
+            await utils.find(client, "term", search_filter, output_config)

@@ -1,6 +1,7 @@
 """Console script for op_find_item."""
 
 import asyncio
+from collections.abc import Callable
 from io import UnsupportedOperation
 from typing import Annotated
 
@@ -133,8 +134,9 @@ async def cli(
     field: list[str] | None,
     vault: list[str] | None,
     output_format: OutputFormat,
+    client_factory: Callable = init_op_client,
 ) -> None:
-    client = await init_op_client(account_name)
+    client = await client_factory(account_name)
 
     if output_format == OutputFormat.CONSOLE:
         output_config = ConsoleOutputConfiguration(client, include_link)

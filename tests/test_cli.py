@@ -69,7 +69,7 @@ def test_main_requires_account_name():
     result = runner.invoke(cli_module.app, ["needle"], env={})
 
     assert result.exit_code == 2
-    assert "account-name" in result.output
+    assert "Missing option '--account-name'" in result.output
 
 
 @pytest.mark.asyncio

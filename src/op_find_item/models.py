@@ -10,8 +10,6 @@ from types import TracebackType
 from onepassword import Client, Item, ItemField, ItemOverview, VaultOverview
 from rich.progress import Progress, TaskID
 
-from op_find_item import utils
-
 
 class OutputFormat(Enum):
     CONSOLE = "console"
@@ -98,6 +96,8 @@ class ConsoleOutputConfiguration(OutputConfiguration, AbstractContextManager):
     ) -> None:
         match_str = f"Match found in vault '{vault_overview.title}', item '{item.title}', field '{field.title}'"
         if self.include_link:
+            from op_find_item import utils
+
             link = await utils.get_link(self.client, item) if self.include_link else None
             match_str += f", link '{link}'"
         self.progress.print(
@@ -142,6 +142,8 @@ class JSONOutputConfiguration(OutputConfiguration):
         field: ItemField,
         match_number: int,
     ) -> None:
+        from op_find_item import utils
+
         output_item = OutputItem(
             vault_name=vault_overview.title,
             item_name=item.title,

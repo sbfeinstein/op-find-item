@@ -59,9 +59,7 @@ class TestConsoleOutputConfiguration:
         field.title = "password"
 
         config.__enter__()
-        config.on_vault_start(
-            cast(VaultOverview, vault), [cast(ItemOverview, object()), cast(ItemOverview, object())]
-        )
+        config.on_vault_start(cast(VaultOverview, vault), [cast(ItemOverview, object()), cast(ItemOverview, object())])
         await config.on_match(cast(VaultOverview, vault), cast(Item, item), cast(ItemField, field), 1)
         config.on_item_processed(cast(VaultOverview, vault), cast(Item, item))
         config.__exit__(None, None, None)

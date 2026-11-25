@@ -9,10 +9,19 @@ from typer.testing import CliRunner
 from op_find_item import cli as cli_module
 from op_find_item.models import ConsoleOutputConfiguration, JSONOutputConfiguration, OutputFormat, SearchFilter
 
-runner = CliRunner()
+
+@pytest.fixture
+def runner() -> CliRunner:
+    return CliRunner(
+        env={
+            "NO_COLOR": "1",
+            "TERM": "dumb",
+            "COLUMNS": "200",
+        },
+    )
 
 
-def test_main_parses_options_and_arguments(monkeypatch):
+def test_main_parses_options_and_arguments(runner, monkeypatch):
     mock_cli = AsyncMock()
     monkeypatch.setattr(cli_module, "cli", mock_cli)
 
@@ -47,7 +56,7 @@ def test_main_parses_options_and_arguments(monkeypatch):
     )
 
 
-def test_main_reads_account_name_from_environment(monkeypatch):
+def test_main_reads_account_name_from_environment(runner, monkeypatch):
     mock_cli = AsyncMock()
     monkeypatch.setattr(cli_module, "cli", mock_cli)
 
@@ -65,7 +74,7 @@ def test_main_reads_account_name_from_environment(monkeypatch):
     )
 
 
-def test_main_requires_account_name():
+def test_main_requires_account_name(runner):
     result = runner.invoke(cli_module.app, ["needle"], env={})
 
     assert result.exit_code == 2

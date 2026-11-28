@@ -1,38 +1,45 @@
 # Installation
 
-## Stable release
+The CLI requires Python 3.11 or newer and the 1Password desktop app.
 
-To install 1Password Find Item, run this command in your terminal:
+## Install as a standalone command
+
+The recommended installation uses `uv`:
 
 ```sh
-uv add op-find-item
+uv tool install op-find-item
 ```
 
-Or if you prefer to use `pip`:
+Alternatively, install with `pipx`:
 
 ```sh
-pip install op-find-item
+pipx install op-find-item
 ```
 
-## From source
-
-The source files for 1Password Find Item can be downloaded from the [Github repo](https://github.com/sbfeinstein/op_find_item).
-
-You can either clone the public repository:
+You can also install it into the active Python environment with `pip`:
 
 ```sh
-git clone https://github.com/sbfeinstein/op_find_item
+python -m pip install op-find-item
 ```
 
-Or download the [tarball](https://github.com/sbfeinstein/op_find_item/tarball/main):
+Confirm installation:
 
 ```sh
-curl -OJL https://github.com/sbfeinstein/op_find_item/tarball/main
+op-find-item --help
 ```
 
-Once you have a copy of the source, you can install it with:
+## Install from source
+
+Clone the [GitHub repository](https://github.com/sbfeinstein/op-find-item), then install the project and its development dependencies:
 
 ```sh
-cd op_find_item
+git clone https://github.com/sbfeinstein/op-find-item.git
+cd op-find-item
 uv sync
+```
+
+Run the CLI from the checkout with:
+
+```sh
+uv run op-find-item --help
 ```

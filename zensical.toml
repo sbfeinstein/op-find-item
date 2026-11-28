@@ -7,6 +7,7 @@ repo_name = "sbfeinstein/op_find_item"
 nav = [
   { "Home" = "index.md" },
   { "Installation" = "installation.md" },
+  { "Authentication" = "authentication.md" },
   { "Usage" = "usage.md" },
   { "API Reference" = "api.md" },
 ]

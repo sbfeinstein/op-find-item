@@ -18,15 +18,18 @@ If you are reporting a bug, please include:
 
 ### Fix Bugs
 
-Look through the GitHub issues for bugs. Anything tagged with "bug" and "help wanted" is open to whoever wants to implement it.
+Look through the GitHub issues for bugs. Anything tagged with "bug" and "help wanted" is open to whoever wants to
+implement it.
 
 ### Implement Features
 
-Look through the GitHub issues for features. Anything tagged with "enhancement" and "help wanted" is open to whoever wants to implement it.
+Look through the GitHub issues for features. Anything tagged with "enhancement" and "help wanted" is open to whoever
+wants to implement it.
 
 ### Write Documentation
 
-1Password Find Item could always use more documentation, whether as part of the official docs, in docstrings, or even on the web in blog posts, articles, and such.
+1Password Find Item could always use more documentation, whether as part of the official docs, in docstrings, or even on
+the web in blog posts, articles, and such.
 
 To preview the docs locally:
 
@@ -34,7 +37,8 @@ To preview the docs locally:
 just docs-serve
 ```
 
-This starts a local server at http://localhost:8000 with live reload. Edit files in `docs/` or add docstrings to your code (the API reference page is auto-generated).
+This starts a local server at http://localhost:8000 with live reload. Edit files in `docs/` or add docstrings to your
+code (the API reference page is auto-generated).
 
 ### Submit Feedback
 
@@ -94,13 +98,24 @@ Ready to contribute? Here's how to set up `op_find_item` for local development.
 
 7. Submit a pull request through the GitHub website.
 
+## Python and dependencies
+
+The package supports Python 3.11 and newer. CI tests the supported floor and
+newer supported versions (currently 3.11 through 3.14). Keep runtime dependency
+requirements at their lowest compatible versions rather than pinning exact
+versions; `uv.lock` records the reproducible development and CI environment.
+When changing dependency requirements, update the lockfile with `uv lock` and
+run the test suite on the supported Python versions.
+
 ## Pull Request Guidelines
 
 Before you submit a pull request, check that it meets these guidelines:
 
 1. The pull request should include tests.
-2. If the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring, and add the feature to the list in README.md.
-3. The pull request should work for Python 3.12, 3.13, and 3.14. Tests run in GitHub Actions on every pull request to the main branch, make sure that the tests pass for all supported Python versions.
+2. If the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a
+   docstring, and add the feature to the list in README.md.
+3. The pull request should work for Python 3.11, 3.12, 3.13, and 3.14. Tests run in GitHub Actions on every pull request
+   to the main branch; make sure they pass for all supported Python versions.
 
 ## Tips
 
@@ -122,16 +137,17 @@ uv run pytest tests/
    git add pyproject.toml uv.lock CHANGELOG/
    git commit -m "Release <version>"
    ```
-3. **Release:**
+3. **Create and publish the GitHub Release:**
    ```bash
    just release
    ```
    This creates an annotated `v*` tag, pushes it to GitHub, and creates a
-   GitHub Release with the changelog contents as release notes. The tag
-   push triggers `.github/workflows/publish.yml`, which builds the package,
-   generates SLSA provenance attestations, and publishes to PyPI via
-   trusted publishing.
+   GitHub Release with the changelog contents as release notes. Publishing
+   the GitHub Release triggers `.github/workflows/publish.yml`. That workflow
+   reruns required CI checks against the release tag, builds the distributions
+   once, and publishes those exact artifacts to PyPI only if all checks pass.
 
 ## Code of Conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in
+this project you agree to abide by its terms.

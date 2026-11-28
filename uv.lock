@@ -398,28 +398,28 @@ wheels = [
 
 [[package]]
 name = "onepassword-sdk"
-version = "0.4.0"
+version = "0.4.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/7e/e7/004a561d60c91bf0493dfdef422813848c4695e70d9715cc832757985823/onepassword_sdk-0.4.0.tar.gz", hash = "sha256:dbfa0914a8eae46ac5a5c924cd0c96ca5be3755b320740a5ef2a389216c2f68e", size = 34477100, upload-time = "2026-02-10T11:52:08.327Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e4/e7/cb26b13a2ce863719d5d48993e8929fe28c450ce04044367cf45f5694d8f/onepassword_sdk-0.4.2.tar.gz", hash = "sha256:fbe98d7e16e16952d1e34d75f2674899cec91d3b26de975168a60b07dc5e6a84", size = 34545111, upload-time = "2026-10-22T20:40:27.478Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d6/2f/83630306c187af478f378fb5a58d1e91be22ac9abad34602d6d92887c204/onepassword_sdk-0.4.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:f4fa3b8324bdc4be4b869f28a7d23604be0c52f8f39015b45b389620dd321da4", size = 7296639, upload-time = "2026-02-10T11:51:23.778Z" },
-    { url = "https://files.pythonhosted.org/packages/4b/49/d3050dc93fbc9d44e0b3f64af16d5583047701ddb8bbdcb1714dede9630e/onepassword_sdk-0.4.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:3d6477d9d9604566655a1ab3f995fe71e1f7b3b0b6e5e797d07982cfe13abf56", size = 7014403, upload-time = "2026-02-10T11:51:26.428Z" },
-    { url = "https://files.pythonhosted.org/packages/4f/b7/75791d0cf7777a8119551420aa421bfc243dcfbaa37afaae8e4fe7c634d4/onepassword_sdk-0.4.0-cp311-cp311-manylinux_2_32_aarch64.whl", hash = "sha256:1e8d7a13327cf675924f8786e24bd89049b2879bcd3f7aa407b5fb1cbec1d973", size = 7083605, upload-time = "2026-02-10T11:51:28.456Z" },
-    { url = "https://files.pythonhosted.org/packages/df/2a/eb2fc0168fdc3ebfb6bd82c305773f8e7f839a508a278a4e6e565cb9616a/onepassword_sdk-0.4.0-cp311-cp311-manylinux_2_32_x86_64.whl", hash = "sha256:060d20714a331e70392cbb18f249d65ac9fe4cae22076f5e0beb3d0a29f5a6cf", size = 7285838, upload-time = "2026-02-10T11:51:30.646Z" },
-    { url = "https://files.pythonhosted.org/packages/ca/69/b0584d5659bf8ce827539157e3d8a769ff33c04a8868089d48f8024fca4f/onepassword_sdk-0.4.0-cp311-cp311-win_amd64.whl", hash = "sha256:f071957fec369828217263630bfcaa8db792ed08d4705b194a7a92f02b6618f1", size = 6115146, upload-time = "2026-02-10T11:51:32.929Z" },
-    { url = "https://files.pythonhosted.org/packages/a7/9c/d2c0b9723fe659a9726d1168d852ffc668c705fd4f5fad462b35917b5348/onepassword_sdk-0.4.0-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:93d16554c2cefde6232d880030dce614a0541ac4b61b395d9d450b8e839f53a5", size = 7296639, upload-time = "2026-02-10T11:51:34.713Z" },
-    { url = "https://files.pythonhosted.org/packages/83/69/413d47c1bd468007e138a58c967a611ad61427f0b57b0e6e09a1b04199eb/onepassword_sdk-0.4.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:3b5b0864774c1b5f8d434f64201c6ba00bdac8daf3adbff13ce4070f4e9fcd15", size = 7014400, upload-time = "2026-02-10T11:51:36.919Z" },
-    { url = "https://files.pythonhosted.org/packages/ce/bb/671012ec4b2597d5ac6761d72816487a905238d44f0be003a47f57e9cb10/onepassword_sdk-0.4.0-cp312-cp312-manylinux_2_32_aarch64.whl", hash = "sha256:cbea5920c319a01faf9c711cb20337acdd9fc9a94601c065c19c70648ddd5aa2", size = 7083606, upload-time = "2026-02-10T11:51:38.593Z" },
-    { url = "https://files.pythonhosted.org/packages/d0/cd/03212cce57743aff296f68a79f5cdb810b28f19c8bdf4a9ba5c9a377b569/onepassword_sdk-0.4.0-cp312-cp312-manylinux_2_32_x86_64.whl", hash = "sha256:1ab3cf3a116b77288ac985a5b141a1475cd8b01fba10aeb046337f972aa20e0d", size = 7285840, upload-time = "2026-02-10T11:51:40.299Z" },
-    { url = "https://files.pythonhosted.org/packages/c8/81/cb7377cac5d5996e4c580aec6d4d0b1d7b5ffa225843881bed86e93d2f35/onepassword_sdk-0.4.0-cp312-cp312-win_amd64.whl", hash = "sha256:e02a4eb4e11d3bf9be055b866b0f52011fe293f612c378192e9ca729381217dc", size = 6115146, upload-time = "2026-02-10T11:51:42.154Z" },
-    { url = "https://files.pythonhosted.org/packages/fb/0d/23456cf0f6a295d9c945522a543edd686598c9a4ceed2fa61245cc64a5c1/onepassword_sdk-0.4.0-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:39fc7832fdf9304c18c658d5ded36f5128a8a811acc1159e6755f86303bb29ea", size = 7296638, upload-time = "2026-02-10T11:51:45.419Z" },
-    { url = "https://files.pythonhosted.org/packages/be/45/e5eb2416112ab3b05ed8bd27aab92374c5988583d82ebe02146368520c40/onepassword_sdk-0.4.0-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:751b2279819320f09db2735ea36f6612e1d46c897679bb35ab1d28fe85acbea6", size = 7014403, upload-time = "2026-02-10T11:51:47.29Z" },
-    { url = "https://files.pythonhosted.org/packages/c4/d4/404da62326bea04ade970dc88c7b556b756edb79f51b49a017f33b3ecfe8/onepassword_sdk-0.4.0-cp313-cp313-manylinux_2_32_aarch64.whl", hash = "sha256:1ff3a24575f0489a9f51bf6900df69ab902b08f35158e6fd3bdfb9d3ca63b131", size = 7083607, upload-time = "2026-02-10T11:51:49.651Z" },
-    { url = "https://files.pythonhosted.org/packages/d7/f8/5be5ee156456d88903f5ac965ce5d00cbfbb06643bbdad305311f97e8f1a/onepassword_sdk-0.4.0-cp313-cp313-manylinux_2_32_x86_64.whl", hash = "sha256:6e1775ec247401e8be5c8e31b334d01948c543312e0cbdcbcb49dab03e526d19", size = 7285841, upload-time = "2026-02-10T11:51:51.8Z" },
-    { url = "https://files.pythonhosted.org/packages/ca/9c/d5e95cfa7495127f962f171ab8e0fd7daaa91c7c0c9281b500d3c0af74bc/onepassword_sdk-0.4.0-cp313-cp313-win_amd64.whl", hash = "sha256:35ba70572af64f0b5736f4673120e7931e58c7c7008fc1fc8f27b21923bdf65d", size = 6115146, upload-time = "2026-02-10T11:51:53.628Z" },
+    { url = "https://files.pythonhosted.org/packages/2a/ce/a844b3e4fce5f7be7ee43e963b60f098301ed99c51032681dda91e9e11b9/onepassword_sdk-0.4.2-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:ac37a9b0e816c3e4e8041459411766aff51fcb5934220d80d6f44a2420198ff6", size = 7310377, upload-time = "2026-10-22T20:38:57.869Z" },
+    { url = "https://files.pythonhosted.org/packages/46/42/ba1e04898a6e4964b2225e2064f4e69209397bd3dea25a681a25ce653a2f/onepassword_sdk-0.4.2-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:0c40442c5fe1d9a8e7bdeb28d8ec9beb5cff15af6d258d1a14da8bb62b1baa14", size = 7030317, upload-time = "2026-10-22T20:39:01.716Z" },
+    { url = "https://files.pythonhosted.org/packages/0e/64/4f4df2a6c725fc8c4f29c4d3b5d86de3d851a8477cd4a2b497673e8f7721/onepassword_sdk-0.4.2-cp311-cp311-manylinux_2_32_aarch64.whl", hash = "sha256:6473048c2d5eb43bc6f78d074c4c6e79ea92b53a6671e350359b55eea1c9769c", size = 7094410, upload-time = "2026-10-22T20:39:05.581Z" },
+    { url = "https://files.pythonhosted.org/packages/5b/15/1dfc4c9d89680956c23c4b53f8d828072a513773ec576a1feb0260a4c6b1/onepassword_sdk-0.4.2-cp311-cp311-manylinux_2_32_x86_64.whl", hash = "sha256:5bb2b0960c65283de084c5e5055f22d326440e79e6b6e0c3818ed54a40ed042a", size = 7289753, upload-time = "2026-10-22T20:39:09.5Z" },
+    { url = "https://files.pythonhosted.org/packages/10/71/281963d3fb32607e74aeb031e21dd45f5b483098cf61fbe70cc81c70959c/onepassword_sdk-0.4.2-cp311-cp311-win_amd64.whl", hash = "sha256:bb6289cd2787387bf61de18f43d31b5c500572496cbc3ac5cbc28a437a8bb0f0", size = 6140434, upload-time = "2026-10-22T20:39:13.149Z" },
+    { url = "https://files.pythonhosted.org/packages/a9/c0/dc3397325e36cea21f228ea77ca4aab370128e3e92c4402af604caa6eee8/onepassword_sdk-0.4.2-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:c8e148cae6b596acceed508efee269cba0de08477f9ee68511cf3f5122875454", size = 7310378, upload-time = "2026-10-22T20:39:17.019Z" },
+    { url = "https://files.pythonhosted.org/packages/87/89/a2981463402893e91128741e3246da2f06617a4158cb7e45016b789030d0/onepassword_sdk-0.4.2-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:58abf6196f5cf2ad97b38b0ad9c8dfc2fba27352046ad2e24fb0da1f77c252c9", size = 7030318, upload-time = "2026-10-22T20:39:21.38Z" },
+    { url = "https://files.pythonhosted.org/packages/83/bd/6986a504ae7bc8891b046f582d0ac27f58aaab10f1df472b5599ff13b755/onepassword_sdk-0.4.2-cp312-cp312-manylinux_2_32_aarch64.whl", hash = "sha256:d871b50d31e389e27e6ca8d62c8d8ddc24b9386af4dd520c76dd5f1b7616a5f6", size = 7094409, upload-time = "2026-10-22T20:39:25.363Z" },
+    { url = "https://files.pythonhosted.org/packages/40/ba/8f903d84f0b8d83f407b854e719ae3a8210e997fdc3cffd4f8df62cad804/onepassword_sdk-0.4.2-cp312-cp312-manylinux_2_32_x86_64.whl", hash = "sha256:d74c71d6f87f4c6ad1b0fa904ed7e4e8af5a8dc81ac25ad84054c69e0ab024b1", size = 7289752, upload-time = "2026-10-22T20:39:29.849Z" },
+    { url = "https://files.pythonhosted.org/packages/05/54/f24f2af58a31e16961fce30b2b40ac8532dd6daa44bd82db96f2606ed692/onepassword_sdk-0.4.2-cp312-cp312-win_amd64.whl", hash = "sha256:bf0d02d14acb046de24d54a1de84225ec8a2d4d12a998d4db656df93d9883e76", size = 6140434, upload-time = "2026-10-22T20:39:33.326Z" },
+    { url = "https://files.pythonhosted.org/packages/a7/1a/ac6809f75daf16d13bb31e257b03d9425375eabd1ddc67840727eaacda9f/onepassword_sdk-0.4.2-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:7fcdb8f99931d2e8a7dee7b9ffd37f5cceea6eabd7305a59488d56a46a21c11b", size = 7310376, upload-time = "2026-10-22T20:39:38.5Z" },
+    { url = "https://files.pythonhosted.org/packages/d5/f5/2cb84df8d0050a24f1e867ad0db32adb474e1d09a91e9ec69c260d1d410d/onepassword_sdk-0.4.2-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:7320c142d51d3fca9483a9392a85e07e5cbdb1cb21f42f9e0e7920bcf087b606", size = 7030318, upload-time = "2026-10-22T20:39:42.205Z" },
+    { url = "https://files.pythonhosted.org/packages/f9/7e/676ea710ccbab6c0cba610dc6091ebce67f70be4d50671e865e13b0f43d6/onepassword_sdk-0.4.2-cp313-cp313-manylinux_2_32_aarch64.whl", hash = "sha256:4ff73f3bdeb6633be57281078c3e9fe774e925f980a666ef42119689e0dd03b9", size = 7094409, upload-time = "2026-10-22T20:39:46.243Z" },
+    { url = "https://files.pythonhosted.org/packages/ee/ff/4e4876a66a87727b6cdfd591c6b136e966ac31ca6ee16bf5935261749f2f/onepassword_sdk-0.4.2-cp313-cp313-manylinux_2_32_x86_64.whl", hash = "sha256:35cbf6eeaa1c7c13a73c0c1400ecfb6e48a30f5ecc27de67df9432cbff3e6cc3", size = 7289753, upload-time = "2026-10-22T20:39:50.1Z" },
+    { url = "https://files.pythonhosted.org/packages/c0/81/70435e71bb826578b410914c7118db12b0d019c81c45ec0d47cbc880b067/onepassword_sdk-0.4.2-cp313-cp313-win_amd64.whl", hash = "sha256:12c66e46852bf158fa2146a9ef9cc6f3cd65d955bcc98ca6de6575e14e207e8e", size = 6140435, upload-time = "2026-10-22T20:39:53.674Z" },
 ]
 
 [[package]]
@@ -460,7 +460,7 @@ typecheck = [
 [package.metadata]
 requires-dist = [
     { name = "onepassword", specifier = ">=0.4.1" },
-    { name = "onepassword-sdk", specifier = ">=0.4.0" },
+    { name = "onepassword-sdk", specifier = ">=0.4.2" },
     { name = "rich", specifier = ">=14.3.4" },
     { name = "typer", specifier = ">=0.25.0" },
 ]

@@ -67,6 +67,11 @@ docs-serve:
 docs-build:
     uv run --group docs zensical build --clean
 
+# Publish docs to GitHub Pages
+docs-publish:
+    @echo "Building zensical docs and publishing to GitHub Pages"
+    scripts/publish_docs.sh
+
 # Build the project, useful for checking that packaging is correct
 build:
     rm -rf build
@@ -106,6 +111,7 @@ clean-test:
 	rm -fr .pytest_cache
 
 # Publish to PyPI (manual alternative to GitHub Actions)
+# Does not create a GitHub release as part of this process.
 publish:
     uv build
     uv publish

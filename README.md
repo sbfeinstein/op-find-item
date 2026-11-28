@@ -30,8 +30,9 @@ by [1Password](https://1password.com/) or AgileBits Inc.
 * **Preview locally:** `just docs-serve` (serves at http://localhost:8000)
 * **Build:** `just docs-build`
 
-Docs deploy automatically on push to `main` via GitHub Actions. To enable this, go to your repo's Settings > Pages and
-set the source to **GitHub Actions**.
+Docs deploy automatically on releases (not simply pushes to `main`) via GitHub Actions.
+
+Docs may also be manually deployed to GitHub Pages via `just docs-publish`.
 
 ## Development
 
@@ -94,6 +95,7 @@ Supporting the above required these configuration changes, which were performed 
         * Source "Deploy from a branch"
         * Branch "gh-pages" "/(root)"
         * "Enforce HTTPS" is checked
+    * After an initial manual publishing of the docs, in the `github-pages` Environment that gets created, add "v*" tags as an allowed entry under "Deployment branches and tags".  This allows the release workflow to publish updated documentation.
 * Configure PyPI to support being published to from GitHub Actions
     * In PyPI account or project publishing settings, add a Trusted Publisher for
       owner `sbfeinstein`, repository `op-find-item`, workflow filename

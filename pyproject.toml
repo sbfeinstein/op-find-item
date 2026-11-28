@@ -49,10 +49,10 @@ docs = [
 ]
 
 [project.urls]
-bugs = "https://github.com/sbfeinstein/op_find_item/issues"
-changelog = "https://github.com/sbfeinstein/op_find_item/releases"
-documentation = "https://sbfeinstein.github.io/op_find_item/"
-homepage = "https://github.com/sbfeinstein/op_find_item"
+bugs = "https://github.com/sbfeinstein/op-find-item/issues"
+changelog = "https://github.com/sbfeinstein/op-find-item/releases"
+documentation = "https://sbfeinstein.github.io/op-find-item/"
+homepage = "https://github.com/sbfeinstein/op-find-item"
 
 [project.scripts]
 op-find-item = "op_find_item.cli:app"

@@ -1,8 +1,8 @@
 [project]
 site_name = "1Password Find Item"
-site_url = "https://sbfeinstein.github.io/op_find_item/"
-repo_url = "https://github.com/sbfeinstein/op_find_item"
-repo_name = "sbfeinstein/op_find_item"
+site_url = "https://sbfeinstein.github.io/op-find-item/"
+repo_url = "https://github.com/sbfeinstein/op-find-item"
+repo_name = "sbfeinstein/op-find-item"
 
 nav = [
   { "Home" = "index.md" },

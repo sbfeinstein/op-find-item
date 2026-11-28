@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-If you find a security vulnerability in 1Password Find Item, please report it through [GitHub's private vulnerability reporting](https://github.com/sbfeinstein/op_find_item/security/advisories/new). This keeps the details private while we work on a fix.
+If you find a security vulnerability in 1Password Find Item, please report it through [GitHub's private vulnerability reporting](https://github.com/sbfeinstein/op-find-item/security/advisories/new). This keeps the details private while we work on a fix.
 
 Please include:
 

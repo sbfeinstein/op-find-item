@@ -26,7 +26,7 @@ by [1Password](https://1password.com/) or AgileBits Inc.
 
 `op-find-item`'s documentation is built with [Zensical](https://zensical.org/) and published to GitHub Pages.
 
-* **Live site:** https://sbfeinstein.github.io/op_find_item/
+* **Live site:** https://sbfeinstein.github.io/op-find-item/
 * **Preview locally:** `just docs-serve` (serves at http://localhost:8000)
 * **Build:** `just docs-build`
 
@@ -37,7 +37,7 @@ Docs may also be manually deployed to GitHub Pages via `just docs-publish`.
 ## Development
 
 Create a fork in GitHub if you intend to contribute (see [Contributing](CONTRIBUTING.md)).
-Or directly clone the `op_find_item` if you just want to build and play with the project.
+Or directly clone the `op-find-item` if you just want to build and play with the project.
 
 To set up for local development:
 

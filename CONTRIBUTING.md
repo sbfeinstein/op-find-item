@@ -8,7 +8,7 @@ You can contribute in many ways:
 
 ### Report Bugs
 
-Report bugs at https://github.com/sbfeinstein/op_find_item/issues.
+Report bugs at https://github.com/sbfeinstein/op-find-item/issues.
 
 If you are reporting a bug, please include:
 
@@ -42,7 +42,7 @@ code (the API reference page is auto-generated).
 
 ### Submit Feedback
 
-The best way to send feedback is to file an issue at https://github.com/sbfeinstein/op_find_item/issues.
+The best way to send feedback is to file an issue at https://github.com/sbfeinstein/op-find-item/issues.
 
 If you are proposing a feature:
 
@@ -52,19 +52,19 @@ If you are proposing a feature:
 
 ## Get Started!
 
-Ready to contribute? Here's how to set up `op_find_item` for local development.
+Ready to contribute? Here's how to set up `op-find-item` for local development.
 
-1. Fork the `op_find_item` repo on GitHub.
+1. Fork the `op-find-item` repo on GitHub.
 2. Clone your fork locally:
 
    ```sh
-   git clone git@github.com:your_name_here/op_find_item.git
+   git clone git@github.com:your_name_here/op-find-item.git
    ```
 
 3. Install your local copy with uv:
 
    ```sh
-   cd op_find_item/
+   cd op-find-item/
    uv sync
    ```
 

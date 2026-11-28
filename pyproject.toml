@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "op-find-item"
-version = "0.1.0"
+version = "0.2.0"
 description = "1Password Find Item is a CLI for searching all vaults, items and fields for a given string"
 readme = "README.md"
 authors = [

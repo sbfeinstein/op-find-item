@@ -70,6 +70,8 @@ jobs:
 
   build-docs:
     name: Build Doc Site
+    needs:
+      - build
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -92,7 +94,7 @@ jobs:
 
   publish-docs:
     name: Publish Doc Site
-    needs: build
+    needs: build-docs
     runs-on: ubuntu-latest
     permissions:
       pages: write

@@ -42,7 +42,6 @@ jobs:
 
   publish:
     name: Publish to PyPI
-    if: false # TODO will enable after GitHub and PyPI are configured properly
     needs:
       - build
     runs-on: ubuntu-latest
